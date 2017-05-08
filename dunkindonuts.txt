@@ -1,0 +1,5 @@
+Café Gelado: $5
+Dunkaccino P: $12
+Dunkaccino M: $15
+Frozen: $15
+Hot Chocolate: $8
