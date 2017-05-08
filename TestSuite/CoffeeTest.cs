@@ -28,8 +28,30 @@ namespace TestSuite
         [Test]
         public void TestIfMenuLoads()
         {
-            Menu menu = new Menu("");
+            Menu menu = new Menu(@"C:\Users\cris\Documents\work\IEEE\CSharpCourse\dunkindonuts.txt");
             Assert.AreEqual(5, menu.Options.Count);
         }
+
+        [Test]
+        public void TestIfGottenDescriptionsHaveTheSameLengthOfMenuItems()
+        {
+            Menu menu = new Menu(@"C:\Users\cris\Documents\work\IEEE\CSharpCourse\dunkindonuts.txt");
+            string[] descriptions = menu.GetDescriptions();
+            int lengthOfMenu = menu.Options.Count;
+            int lengthOfDescriptions = descriptions.Length;
+            Assert.AreEqual(lengthOfDescriptions, lengthOfMenu);
+        }
+
+        [Test]
+        public void TestIfGottenPricesHaveTheSameLengthOfMenuItems()
+        {
+            Menu menu = new Menu(@"C:\Users\cris\Documents\work\IEEE\CSharpCourse\dunkindonuts.txt");
+            double[] descriptions = menu.GetPrices();
+            int lengthOfMenu = menu.Options.Count;
+            int lengthOfPrices = descriptions.Length;
+            Assert.AreEqual(lengthOfPrices, lengthOfMenu);
+        }
+
+        // TODO Implement Cashier class
     }
 }
