@@ -42,6 +42,17 @@ namespace CoffeeShop
         {
             return Options.Select(coffee => coffee.Price).ToArray();
         }
+
+        public Coffee GetCoffee(int n)
+        {
+            return Options[n];
+        }
+
+        public Coffee GetCoffee(string what)
+        {
+            var result = from option in Options where option.Name == what select option;
+            return (result.Count() > 0) ? result.First() : null;
+        }
         #endregion
     }
 }

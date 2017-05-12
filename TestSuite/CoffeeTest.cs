@@ -6,6 +6,7 @@ namespace TestSuite
     [TestFixture]
     public class CoffeeTest
     {
+        /* COFFEE TESTS */
         [Test]
         public void TestCoffeePrice()
         {
@@ -25,6 +26,7 @@ namespace TestSuite
             Assert.Throws<System.ArgumentException>(() => new Coffee("", 10.0));
         }
 
+        /* MENU TESTS */
         [Test]
         public void TestIfMenuLoads()
         {
@@ -35,9 +37,8 @@ namespace TestSuite
         [Test]
         public void TestIfGottenDescriptionsHaveTheSameLengthOfMenuItems()
         {
-            Menu menu = new Menu(@"C:\Users\cris\Documents\work\IEEE\CSharpCourse\dunkindonuts.txt");
-            string[] descriptions = menu.GetDescriptions();
-            int lengthOfMenu = menu.Options.Count;
+            string[] descriptions = Menu.GetDescriptions();
+            int lengthOfMenu = Menu.Options.Count;
             int lengthOfDescriptions = descriptions.Length;
             Assert.AreEqual(lengthOfDescriptions, lengthOfMenu);
         }
@@ -45,13 +46,90 @@ namespace TestSuite
         [Test]
         public void TestIfGottenPricesHaveTheSameLengthOfMenuItems()
         {
-            Menu menu = new Menu(@"C:\Users\cris\Documents\work\IEEE\CSharpCourse\dunkindonuts.txt");
-            double[] descriptions = menu.GetPrices();
-            int lengthOfMenu = menu.Options.Count;
+            double[] descriptions = Menu.GetPrices();
+            int lengthOfMenu = Menu.Options.Count;
             int lengthOfPrices = descriptions.Length;
             Assert.AreEqual(lengthOfPrices, lengthOfMenu);
         }
 
-        // TODO Implement Cashier class
+        [Test]
+        public void TestGetValidCoffeeFromMenu()
+        {
+            Coffee coffee = Menu.GetCoffee(3);
+            Assert.AreEqual(coffee.Name, "Frozen");
+            coffee = Menu.GetCoffee("Café Gelado");
+            Assert.AreEqual(5, coffee.Price);
+        }
+
+        [Test]
+        public void TestGetInvalidCoffeeFromMenu()
+        {
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => Menu.GetCoffee(-1));
+            Coffee coffee = Menu.GetCoffee("FSCK");
+            Assert.Null(coffee);
+        }
+
+        /* CASHIER TESTS */
+        [Test]
+        public void TestInitialOrderState()
+        {
+            Cashier cashier = new Cashier();
+            cashier.Start();
+            Assert.AreEqual(0, cashier.Size);
+        }
+
+        [Test]
+        public void TestAddDifferentCoffeeToOrder()
+        {
+            Cashier cashier = new Cashier();
+            int limit = Menu.Options.Count;
+            cashier.Start();
+            for (int i = 0; i < limit; ++i)
+            {
+                cashier.Add(Menu.GetCoffee(i));
+            }
+            Assert.AreEqual(limit, cashier.Size);
+        }
+
+        [Test]
+        public void TestAddEqualCoffeesToOrder()
+        {
+            Cashier cashier = new Cashier();
+            int limit = 10;
+            cashier.Start();
+            for (int i = 0; i < limit; ++i)
+            {
+                cashier.Add(Menu.GetCoffee(0));
+            }
+            Assert.AreEqual(limit, cashier.Size);
+        }
+
+        [Test]
+        public void TestDoSomethingWithoutStartingOrder()
+        {
+            Cashier cashier = new Cashier();
+            Assert.Throws<System.InvalidOperationException>(() => cashier.Add(Menu.GetCoffee(0)));
+            Assert.Throws<System.InvalidOperationException>(() => cashier.Finish());
+        }
+
+        [Test]
+        public void TestOrderWorks()
+        {
+            Cashier cashier = new Cashier();
+            int limit = Menu.Options.Count;
+            double total = 0;
+            cashier.Start();
+            for (int i = 0; i < limit; ++i)
+            {
+                var coffee = Menu.GetCoffee(i);
+                total += coffee.Price;
+                cashier.Add(coffee);
+            }
+            cashier.Finish();
+            Assert.AreEqual(total, cashier.Total);
+            Assert.AreEqual(limit, cashier.Description.Length);
+        }
+
+        static Menu Menu = new Menu(@"C:\Users\cris\Documents\work\IEEE\CSharpCourse\dunkindonuts.txt");
     }
 }
