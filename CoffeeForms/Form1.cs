@@ -16,5 +16,13 @@ namespace CoffeeForms
         {
             InitializeComponent();
         }
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            // Load menu
+            // Start new order
+            // Disable start button
+            // Enable ok button
+        }
     }
 }

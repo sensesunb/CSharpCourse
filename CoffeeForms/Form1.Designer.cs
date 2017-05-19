@@ -113,7 +113,10 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackgroundImage = global::CoffeeForms.Properties.Resources.coffee_clip_art_acq4B9zcM;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::CoffeeForms.Properties.Resources.coffee_clip_art_acq4B9zcM;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(154, 65);
@@ -186,6 +189,7 @@
             this.buttonStart.TabIndex = 0;
             this.buttonStart.Text = "Novo";
             this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // buttonOk
             // 
