@@ -82,6 +82,12 @@
   <ItemGroup>
     <None Include="Resources\coffee-clip-art-acq4B9zcM.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoffeeShop\CoffeeShop.csproj">
+      <Project>{89f9cb7e-1d90-4abd-82e4-8485bc0cc4d9}</Project>
+      <Name>CoffeeShop</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
