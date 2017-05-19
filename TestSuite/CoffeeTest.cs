@@ -6,7 +6,7 @@ namespace TestSuite
     [TestFixture]
     public class CoffeeTest
     {
-        /* COFFEE TESTS */
+        #region Coffee tests
         [Test]
         public void TestCoffeePrice()
         {
@@ -25,8 +25,9 @@ namespace TestSuite
         {
             Assert.Throws<System.ArgumentException>(() => new Coffee("", 10.0));
         }
+        #endregion
 
-        /* MENU TESTS */
+        #region Menu tests
         [Test]
         public void TestIfMenuLoads()
         {
@@ -68,8 +69,9 @@ namespace TestSuite
             Coffee coffee = Menu.GetCoffee("FSCK");
             Assert.Null(coffee);
         }
+        #endregion
 
-        /* CASHIER TESTS */
+        #region Cashier tests
         [Test]
         public void TestInitialOrderState()
         {
@@ -129,6 +131,7 @@ namespace TestSuite
             Assert.AreEqual(total, cashier.Total);
             Assert.AreEqual(limit, cashier.Description.Length);
         }
+        #endregion
 
         static Menu Menu = new Menu(@"C:\Users\cris\Documents\work\IEEE\CSharpCourse\dunkindonuts.txt");
     }
