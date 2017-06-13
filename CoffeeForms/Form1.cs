@@ -20,7 +20,7 @@ namespace CoffeeForms
         {
             InitializeComponent();
             Cashier = new Cashier();
-            Options = new CoffeeShop.Menu(@"C:\Users\cris\Documents\work\IEEE\CSharpCourse\dunkindonuts.txt");
+            Options = new CoffeeShop.Menu(@"C:\Users\cris\Documents\work\IEEE\src\sensesunb\CSharpCourse\dunkindonuts.txt");
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
