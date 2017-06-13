@@ -56,6 +56,7 @@ namespace Hello
         public Pedido(List<Coffee> menu, string[] pedido)
         {
             Cafes = pedido;
+            
             for (int i = 0; i < pedido.Length; i++)
             {
                 for (int j = 0; j < menu.Count; j++)
@@ -66,6 +67,8 @@ namespace Hello
                     }
                 }
             }
+            // Magia negra:
+            // Total = pedido.Select(p => menu.Where(m => m.Nome == p).First().Preco).Aggregate(0, (acc, it) => acc + it);
         }
 
         public void Mostrar()
